@@ -172,6 +172,55 @@ window.addEventListener('resize', function() {
 
 Este código lida com o evento de redimensionamento da janela do navegador, atualizando a relação de aspecto da câmera e o tamanho do renderizador para corresponder ao novo tamanho da janela.
 
+
+
+### Carregamento de Modelos 3D e Animação
+
+O código utiliza o `GLTFLoader` para importar modelos 3D e, se disponíveis, suas animações. Esta seção descreve como isso é feito:
+
+1. **Importação do Modelo 3D:** O código faz uso do `GLTFLoader` para carregar modelos 3D a partir dos arquivos GLTF. A seguinte seção do código realiza o carregamento do modelo:
+
+   ```javascript
+   const assetLoader = new GLTFLoader();
+   
+   let mixer;
+   assetLoader.load(model2.href, function(gltf) {
+       const model = gltf.scene;
+       scene.add(model);
+       model.position.set(8, 3, 0);
+       
+       // Configura a luz direcional para mirar o modelo 3D
+       directionalLight.target = model;
+       
+       // Verificação de animações no arquivo GLTF
+       if (gltf.animations && gltf.animations.length > 0) {
+           // Cria botões para iniciar diferentes animações no modelo
+           const animationButtonsDiv = document.getElementById("animationButtons");
+           gltf.animations.forEach((animation, index) => {
+               const button = document.createElement("button");
+               button.textContent = animation.name || `Animação ${index + 1}`;
+               button.addEventListener("click", () => {
+                   // Inicia a animação correspondente
+                   const clipAction = mixer.clipAction(animation);
+                   clipAction.play();
+               });
+               animationButtonsDiv.appendChild(button);
+           });
+       }
+   }, undefined, function(error) {
+       console.error(error);
+   });
+   ```
+
+2. **Carregamento do Mixer:** O objeto `mixer` é usado para gerenciar animações nos modelos 3D. Ele é criado e configurado dentro do bloco de código acima.
+
+3. **Verificação de Animações:** O código verifica se o arquivo GLTF carregado contém animações. Se animações estiverem disponíveis, ele cria botões interativos que permitem ao usuário iniciar diferentes animações no modelo.
+
+4. **Controle de Animação:** Cada botão criado permite ao usuário iniciar uma animação específica no modelo. Quando o botão é clicado, a animação correspondente é iniciada.
+
+Esta parte do código é responsável por adicionar interatividade e animações aos modelos 3D carregados usando o GLTFLoader. Ela oferece aos usuários a capacidade de explorar e interagir com as animações associadas aos modelos 3D em tempo real.
+
+
 ### Conclusão
 
 Este é um resumo detalhado do código Three.js fornecido. Ele cria uma cena 3D, carrega modelos, texturas e luzes, permite interações do usuário e animações. Certifique-se de configurar o ambiente conforme as instruções fornecidas para executar o código em seu próprio sistema.# Implementacao3D
