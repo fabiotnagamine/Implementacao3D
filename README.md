@@ -175,4 +175,4 @@ Este código lida com o evento de redimensionamento da janela do navegador, atua
 ### Conclusão
 
 Este é um resumo detalhado do código Three.js fornecido. Ele cria uma cena 3D, carrega modelos, texturas e luzes, permite interações do usuário e animações. Certifique-se de configurar o ambiente conforme as instruções fornecidas para executar o código em seu próprio sistema.# Implementacao3D
-# Implementacao3D
+
