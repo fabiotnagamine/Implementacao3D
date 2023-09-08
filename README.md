@@ -7,7 +7,7 @@ Antes de executar o código Three.js, você precisará configurar o ambiente de 
 2. **Instalação do Parcel:** O código utiliza o Parcel para empacotar e servir os arquivos do projeto. Para instalar o Parcel globalmente, execute o seguinte comando no terminal:
 
    ```bash
-   npm install -g parcel-bundler
+   npm install -g parcel
    ```
 
 ### Instruções de Execução
